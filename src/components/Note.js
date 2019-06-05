@@ -1,3 +1,5 @@
+/*This is the child component*/
+
 import React, { Component } from 'react';
 
 

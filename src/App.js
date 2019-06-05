@@ -1,3 +1,5 @@
+/*This is the parent component*/
+
 import React, { Component } from 'react';
 import Note from './components/Note.js'
 import './App.css';
