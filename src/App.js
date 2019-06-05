@@ -21,15 +21,15 @@ class App extends Component{
     if(this.state.noteText === ''){return}
     let notesArr = this.state.notes.slice();
       notesArr.push(this.state.noteText);
-    this.setState({ noteText: '', notes: notesArr});
-    this.textInput.focus();
+      this.setState({ noteText: '', notes: notesArr});
+      this.textInput.focus();
   }
 
   handleKeyPress = (event) => {
     if (event.key === 'Enter'){
-      let notesArr = this.state.notes;
+      let notesArr = this.state.notes.slice();
         notesArr.push(this.state.noteText);
-        this.setState({ notes: notesArr })
+        this.setState({ noteText: '', notes: notesArr});
     }
   }
 
@@ -51,7 +51,9 @@ class App extends Component{
     return (
         <div className="container">
 
-          <div className = "header">To Do List</div>{notes}
+          <div className = "header">
+            <h1>To Do List</h1>
+          </div>{notes}
 
           <div className="btn" onClick={this.addNote.bind(this)}>+</div>
 
@@ -61,6 +63,7 @@ class App extends Component{
             value={this.state.noteText}
             onChange={noteText => this.updateNoteText(noteText)}
             onKeyPress={this.handleKeyPress.bind(this)}
+            placeholder="Enter your note here . . ."
           />
         </div>
     );
