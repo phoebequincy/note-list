@@ -11,7 +11,7 @@ class App extends Component{
     super(props);
     this.state = {
         noteText: '',
-        notes: [],
+        notes: [],//array that holds all the notes we create
     }
   }
 
@@ -20,12 +20,12 @@ class App extends Component{
   }
 
   addNote(){
-    if(this.state.noteText === ''){return}
+    if(this.state.noteText === ''){return}//check if the note text is empty, return
     let notesArr = this.state.notes.slice();
-      notesArr.push(this.state.noteText);
+      notesArr.push(this.state.noteText);//if there's something in the note, we push it to the notes text array
       this.setState({ noteText: '', notes: notesArr});
       this.textInput.focus();
-  }
+  }//resets state of the note text to empty so we can add others, use the reference to refocus the input field 
 
   handleKeyPress = (event) => {
     if (event.key === 'Enter'){
@@ -37,16 +37,17 @@ class App extends Component{
 
   deleteNote(index){
     let notesArr = this.state.notes;
-    notesArr.splice(index, 1);
-    this.setState({ notes: notesArr })
+    notesArr.splice(index, 1);//removes the note from the notes array
+    this.setState({ notes: notesArr })//updates the state of notes
   }
 
   render() {
+    //map is making copies of the note component to create new notes
     let notes = this.state.notes.map((val,key) => {
       return <Note
-                key={key}
-                text={val}
-                deleteMethod={() => this.deleteNote(key)}
+                key={key}//keeps track of which notes get added or deleted
+                text={val}//the  note text
+                deleteMethod={() => this.deleteNote(key)}//pasing the key of the note which is the index
              />
     })
 
